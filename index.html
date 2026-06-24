@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>IVORY EVENT BUREAU — Mobile Presentation</title>
+  <title>IVORY EVENT BUREAU</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -121,7 +121,7 @@
     .hero-media{
       background:
         linear-gradient(180deg,rgba(3,3,3,.05),rgba(3,3,3,.25) 44%,#030303 100%),
-        url('https://res.cloudinary.com/dc2n4hmij/image/upload/v1782049933/ESWED-0724.jpg_o8dl9e.jpg') center 72% / auto 124% no-repeat;
+        url('https://res.cloudinary.com/dc2n4hmij/image/upload/v1781461968/ESWED-0195_resized_oxftn3.jpg') center 52% / cover no-repeat;
       transform:scale(1.05);
       transform-origin:center 68%;
     }
@@ -759,6 +759,214 @@
       .slide:last-child{break-after:auto;page-break-after:auto}
     }
 
+
+    /* Site-like refinement based on the live IVORY reference */
+    body{
+      background:var(--black);
+    }
+
+    .shell{
+      padding:0;
+      background:var(--black);
+    }
+
+    .deck{
+      max-width:none;
+      gap:0;
+    }
+
+    .slide{
+      border-radius:0;
+      box-shadow:none;
+      min-height:100svh;
+    }
+
+    .slide.light{
+      background:#fffdf9;
+      color:#030303;
+    }
+
+    .slide.dark,
+    .slide.dark.alt{
+      background:#030303;
+      color:#f5f1ea;
+    }
+
+    .hero-slide{
+      min-height:100svh;
+      padding:0;
+    }
+
+    .hero-media{
+      background-position:center 50%;
+      background-size:cover;
+      transform:scale(1.02);
+      filter:saturate(.95) contrast(1.02);
+    }
+
+    .hero-overlay{
+      background:
+        linear-gradient(90deg,rgba(3,3,3,.72),rgba(3,3,3,.32) 48%,rgba(3,3,3,.08)),
+        linear-gradient(180deg,rgba(3,3,3,.10),rgba(3,3,3,.34) 52%,rgba(3,3,3,.86));
+    }
+
+    .hero-content{
+      max-width:1180px;
+      margin:0 auto;
+      padding:0 24px 96px;
+    }
+
+    .hero-title{
+      max-width:830px;
+      letter-spacing:-.072em;
+    }
+
+    .hero-sub{
+      max-width:560px;
+    }
+
+    .hero-note{
+      display:none;
+    }
+
+    .hero-marquee{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:6;
+      overflow:hidden;
+      border-top:1px solid rgba(245,241,234,.16);
+      border-bottom:1px solid rgba(245,241,234,.10);
+      background:rgba(3,3,3,.72);
+      backdrop-filter:blur(14px);
+    }
+
+    .hero-marquee-track{
+      display:flex;
+      width:max-content;
+      animation:ivoryMarquee 24s linear infinite;
+    }
+
+    .hero-marquee span{
+      display:inline-flex;
+      align-items:center;
+      gap:18px;
+      white-space:nowrap;
+      padding:18px 22px;
+      font-size:10px;
+      line-height:1;
+      font-weight:500;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+      color:rgba(245,241,234,.86);
+    }
+
+    .hero-marquee b{
+      color:var(--gold);
+      font-weight:600;
+    }
+
+    @keyframes ivoryMarquee{
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
+    }
+
+    .dark .directions{
+      border-top-color:var(--line);
+    }
+
+    .dark .direction-list li{
+      color:var(--muted);
+    }
+
+    .dark .direction-list li::before{
+      background:var(--gold);
+    }
+
+    .dark .photo-collage .item,
+    .dark .events-gallery .photo{
+      border:1px solid var(--line);
+      background:#111;
+    }
+
+    #slide-3.light .value-grid{
+      background:var(--line-dark);
+      border-color:var(--line-dark);
+    }
+
+    #slide-3.light .value-card{
+      background:#fff;
+      border-color:var(--line-dark);
+    }
+
+    #slide-3.light .value-card::before{
+      background:rgba(184,154,99,.34);
+    }
+
+    #slide-3.light .value-num{
+      color:rgba(184,154,99,.18);
+    }
+
+    #slide-3.light .value-title{
+      color:#030303;
+    }
+
+    #slide-3.light .value-text{
+      color:rgba(3,3,3,.68);
+    }
+
+    @media(max-width:759px){
+      .slide{
+        padding:70px 22px;
+      }
+
+      .hero-content{
+        padding:0 24px 96px;
+      }
+
+      .hero-title{
+        font-size:38px;
+      }
+
+      .hero-sub{
+        font-size:13px;
+      }
+
+      .hero-marquee span{
+        padding:16px 18px;
+        font-size:9px;
+        letter-spacing:.20em;
+      }
+
+      #slide-2 .photo-collage{
+        margin-top:32px;
+      }
+    }
+
+    @media(min-width:1024px){
+      .hero-content{
+        padding-bottom:116px;
+      }
+
+      .hero-title{
+        font-size:clamp(62px,5.4vw,88px);
+      }
+
+      .hero-sub{
+        font-size:16px;
+      }
+
+      .hero-marquee span{
+        padding:20px 34px;
+        font-size:10px;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .hero-marquee-track{animation:none}
+    }
+
   </style>
 </head>
 <body>
@@ -773,11 +981,18 @@
           <div class="brand">IVORY EVENT BUREAU</div>
           <h1 class="hero-title">Создаем события, которые становятся частью истории</h1>
           <p class="hero-sub">Бутик-бюро полного цикла по организации частных и корпоративных мероприятий</p>
-          <div class="hero-note"><b>Полный цикл</b>От идеи и сценария до атмосферы, логистики и финальной реализации</div>
+        </div>
+        <div class="hero-marquee" aria-label="Полный цикл — От идеи и сценария до атмосферы, логистики и финальной реализации">
+          <div class="hero-marquee-track">
+            <span><b>Полный цикл</b> От идеи и сценария до атмосферы, логистики и финальной реализации</span>
+            <span><b>Полный цикл</b> От идеи и сценария до атмосферы, логистики и финальной реализации</span>
+            <span><b>Полный цикл</b> От идеи и сценария до атмосферы, логистики и финальной реализации</span>
+            <span><b>Полный цикл</b> От идеи и сценария до атмосферы, логистики и финальной реализации</span>
+          </div>
         </div>
       </section>
 
-      <section class="slide light" id="slide-2">
+      <section class="slide dark" id="slide-2">
         <div class="slide-no">02</div>
         <div class="eyebrow">Кто мы</div>
         <h2 class="title">Мы создаем события, в которых каждая деталь работает на впечатление</h2>
@@ -805,7 +1020,7 @@
         </div>
       </section>
 
-      <section class="slide dark alt" id="slide-3">
+      <section class="slide light" id="slide-3">
         <div class="slide-no">03</div>
         <div class="eyebrow">Что входит в нашу работу</div>
         <h2 class="title">Здесь важна не услуга, а ценность, которую получает клиент</h2>
