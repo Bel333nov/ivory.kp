@@ -782,7 +782,7 @@
     }
 
     .slide.light{
-      background:#fffdf9;
+      background:#ffffff;
       color:#030303;
     }
 
@@ -891,13 +891,18 @@
     }
 
     #slide-3.light .value-grid{
-      background:var(--line-dark);
-      border-color:var(--line-dark);
+      background:transparent;
+      border:0;
+      gap:18px;
+    }
+
+    #slide-3.light{
+      background:#ffffff;
     }
 
     #slide-3.light .value-card{
       background:#fff;
-      border-color:var(--line-dark);
+      border-color:rgba(3,3,3,.08);
     }
 
     #slide-3.light .value-card::before{
@@ -921,16 +926,30 @@
         padding:70px 22px;
       }
 
+      .hero-media{
+        background-position:58% 62%;
+        background-size:auto 136%;
+        transform:scale(1.12);
+      }
+
       .hero-content{
-        padding:0 24px 96px;
+        padding:0 24px 72px;
+      }
+
+      .brand{
+        margin-bottom:16px;
       }
 
       .hero-title{
-        font-size:38px;
+        font-size:34px;
+        max-width:300px;
       }
 
       .hero-sub{
-        font-size:13px;
+        margin-top:18px;
+        font-size:12px;
+        line-height:1.82;
+        max-width:300px;
       }
 
       .hero-marquee span{
