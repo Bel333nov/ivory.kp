@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>IVORY EVENT BUREAU — Mobile Presentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --black:#030303;
+      --black2:#070707;
+      --black3:#0d0d0d;
+      --white:#f5f1ea;
+      --white2:#fffdf9;
+      --muted:rgba(245,241,234,.72);
+      --muted-dark:rgba(3,3,3,.68);
+      --line:rgba(245,241,234,.11);
+      --line-dark:rgba(3,3,3,.10);
+      --gold:#b89a63;
+      --gold2:rgba(184,154,99,.22);
+      --serif:'Cormorant Garamond',serif;
+      --sans:'Montserrat',sans-serif;
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+    html{scroll-behavior:smooth;background:#000}
+    body{
+      font-family:var(--sans);
+      background:#000;
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:geometricPrecision;
+      overflow-x:hidden;
+    }
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+
+    .shell{
+      min-height:100vh;
+      padding:18px 10px 28px;
+      background:linear-gradient(180deg,#0a0a0a,#000);
+    }
+
+    .deck{
+      width:100%;
+      max-width:430px;
+      margin:0 auto;
+      display:grid;
+      gap:14px;
+    }
+
+    .slide{
+      position:relative;
+      min-height:100svh;
+      border-radius:var(--radius);
+      overflow:hidden;
+      padding:24px 20px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      box-shadow:0 10px 40px rgba(0,0,0,.28);
+    }
+
+    .slide.dark{background:var(--black);color:var(--white)}
+    .slide.dark.alt{background:var(--black2)}
+    .slide.light{background:var(--white2);color:var(--black)}
+
+    .slide-no{
+      position:absolute;
+      top:18px;
+      right:20px;
+      font-size:9px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      opacity:.6;
+      z-index:5;
+    }
+
+    .eyebrow{
+      font-size:9px;
+      font-weight:600;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:14px;
+    }
+
+    .title{
+      font-size:31px;
+      line-height:1.07;
+      font-weight:500;
+      letter-spacing:-.055em;
+    }
+
+    .text{
+      margin-top:16px;
+      font-size:13px;
+      line-height:1.82;
+      opacity:.78;
+      font-weight:400;
+    }
+
+    .hero-slide{
+      justify-content:flex-end;
+      padding:0;
+      min-height:100svh;
+    }
+
+    .hero-media,
+    .hero-overlay,
+    .hero-content{position:absolute;inset:0}
+
+    .hero-media{
+      background:
+        linear-gradient(180deg,rgba(3,3,3,.10),rgba(3,3,3,.56) 70%,#030303 100%),
+        url('https://res.cloudinary.com/dc2n4hmij/image/upload/v1782049933/ESWED-0724.jpg_o8dl9e.jpg') center/cover no-repeat;
+      transform:scale(1.03);
+    }
+
+    .hero-overlay{
+      background:linear-gradient(180deg,rgba(3,3,3,.14),rgba(3,3,3,.24) 30%,rgba(3,3,3,.72) 82%,#030303 100%);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:3;
+      inset:auto;
+      padding:26px 20px 24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      min-height:100%;
+    }
+
+    .brand{
+      font-size:9px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      font-weight:600;
+      color:var(--gold);
+      margin-bottom:14px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand::before{content:'';width:28px;height:1px;background:var(--gold2)}
+
+    .hero-title{
+      font-size:34px;
+      line-height:1.05;
+      font-weight:500;
+      letter-spacing:-.06em;
+      max-width:320px;
+    }
+
+    .hero-sub{
+      margin-top:16px;
+      font-size:13px;
+      line-height:1.82;
+      color:var(--muted);
+      max-width:300px;
+    }
+
+    .hero-note{
+      margin-top:24px;
+      border-left:1px solid var(--gold2);
+      padding-left:16px;
+      font-size:11px;
+      line-height:1.75;
+      color:var(--muted);
+      max-width:280px;
+    }
+
+    .hero-note b{
+      display:block;
+      margin-bottom:8px;
+      font-size:9px;
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      color:var(--white);
+    }
+
+    .photo-collage{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .photo-collage .item{
+      overflow:hidden;
+      border-radius:18px;
+      background:#ddd;
+      min-height:120px;
+    }
+
+    .photo-collage .item.tall{grid-row:span 2;min-height:248px}
+    .photo-collage img{width:100%;height:100%;object-fit:cover}
+
+    .directions{
+      margin-top:22px;
+      padding-top:20px;
+      border-top:1px solid var(--line-dark);
+    }
+
+    .directions h3{
+      font-size:10px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:14px;
+    }
+
+    .direction-list{list-style:none;display:grid;gap:10px}
+    .direction-list li{
+      position:relative;
+      padding-left:16px;
+      font-size:13px;
+      line-height:1.7;
+      color:rgba(3,3,3,.78);
+    }
+    .direction-list li::before{
+      content:'';
+      position:absolute;
+      left:0;
+      top:.7em;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:var(--gold);
+    }
+
+    .value-grid{margin-top:24px;display:grid;gap:10px}
+    .value-card{
+      background:linear-gradient(180deg,#070707,#030303);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:24px 20px 20px;
+      position:relative;
+      overflow:hidden;
+      min-height:162px;
+    }
+    .value-card::before{content:'';position:absolute;left:20px;top:20px;width:28px;height:1px;background:var(--gold2)}
+    .value-num{
+      position:absolute;
+      right:16px;
+      top:10px;
+      font-family:var(--serif);
+      font-size:52px;
+      line-height:1;
+      color:rgba(184,154,99,.16);
+    }
+    .value-title{margin-top:36px;font-size:18px;font-weight:500;margin-bottom:10px}
+    .value-text{font-size:13px;line-height:1.78;color:var(--muted)}
+
+    .events-gallery{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+    .events-gallery .photo{
+      overflow:hidden;
+      border-radius:18px;
+      aspect-ratio:1 / 1.15;
+      background:#111;
+      border:1px solid var(--line);
+    }
+    .events-gallery .photo img{width:100%;height:100%;object-fit:cover;filter:brightness(.84)}
+
+    .event-texts{margin-top:18px;display:grid;gap:14px}
+    .event-texts .block{padding-top:14px;border-top:1px solid var(--line)}
+    .event-texts h4{font-size:14px;font-weight:600;margin-bottom:6px}
+    .event-texts p{font-size:13px;line-height:1.72;color:var(--muted)}
+
+    .steps{margin-top:24px;display:grid;gap:10px}
+    .step{
+      background:rgba(255,255,255,.76);
+      border:1px solid var(--line-dark);
+      border-radius:20px;
+      padding:20px 18px;
+    }
+    .step-num{font-size:9px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+    .step h4{font-size:18px;font-weight:500;margin-bottom:8px;letter-spacing:-.03em}
+    .step p{font-size:13px;line-height:1.72;color:rgba(3,3,3,.72)}
+
+    .stats-box{
+      margin-top:18px;
+      background:#fff;
+      border:1px solid var(--line-dark);
+      border-radius:22px;
+      padding:22px 18px;
+    }
+    .stats-box h3{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+    .stat-list{list-style:none;display:grid;gap:12px}
+    .stat-list li{padding-top:12px;border-top:1px solid var(--line-dark)}
+    .stat-list li:first-child{padding-top:0;border-top:0}
+    .stat-val{display:block;font-family:var(--serif);font-size:36px;line-height:.95;color:var(--black);margin-bottom:6px}
+    .stat-desc{font-size:13px;line-height:1.62;color:rgba(3,3,3,.70)}
+
+    .pricing-intro{margin-bottom:22px}
+    .pricing-cards{display:grid;gap:12px}
+    .price-card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg,#060606,#030303);
+      border-radius:22px;
+      padding:22px 18px;
+    }
+    .price-card h3{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+    .price-list{list-style:none;display:grid;gap:12px}
+    .price-list li{display:flex;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid var(--line)}
+    .price-list li:first-child{padding-top:0;border-top:0}
+    .price-name,.price-value{font-size:13px;line-height:1.6}
+    .price-value{font-weight:600;white-space:nowrap}
+
+    .contact-slide{
+      background:
+        linear-gradient(180deg,rgba(3,3,3,.56),#030303),
+        url('https://res.cloudinary.com/dc2n4hmij/image/upload/v1782049936/ESWED-0720.jpg_bcvvu9.jpg') center/cover no-repeat;
+      text-align:center;
+      align-items:center;
+    }
+    .contact-inner{width:100%;max-width:320px;margin:0 auto}
+    .contact-title{font-size:30px;line-height:1.08;font-weight:500;letter-spacing:-.055em}
+    .contact-list{margin-top:30px;display:grid;gap:16px;text-align:left}
+    .contact-item{padding:0 0 14px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;backdrop-filter:none}
+    .contact-item span{display:block;margin-bottom:7px;font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+    .contact-item b{display:block;font-size:15px;line-height:1.45;font-weight:400;letter-spacing:.02em;color:var(--white);text-transform:none}
+    .footer-note{margin-top:24px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,241,234,.54)}
+
+    @media(min-width:431px){
+      .slide{min-height:880px}
+    }
+
+    @media print{
+      @page{size:430px 932px;margin:0}
+      html,body{background:#000 !important}
+      .shell{padding:0 !important;background:#000 !important}
+      .deck{max-width:none !important;gap:0 !important}
+      .slide{min-height:932px !important;border-radius:0 !important;box-shadow:none !important;break-after:page;page-break-after:always;margin:0 !important}
+      .slide:last-child{break-after:auto;page-break-after:auto}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <main class="deck">
+
+      <section class="slide dark hero-slide" id="slide-1">
+        <div class="slide-no">01</div>
+        <div class="hero-media"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="brand">IVORY EVENT BUREAU</div>
+          <h1 class="hero-title">Создаем события, которые становятся частью истории</h1>
+          <p class="hero-sub">Бутик-бюро полного цикла по организации частных и корпоративных мероприятий</p>
+          <div class="hero-note"><b>Полный цикл</b>От идеи и сценария до атмосферы, логистики и финальной реализации</div>
+        </div>
+      </section>
+
+      <section class="slide light" id="slide-2">
+        <div class="slide-no">02</div>
+        <div class="eyebrow">Кто мы</div>
+        <h2 class="title">Мы создаем события, в которых каждая деталь работает на впечатление</h2>
+        <p class="text">От семейных торжеств до масштабных церемоний для бизнеса и девелоперских проектов — сопровождаем клиента на всех этапах, от идеи до реализации</p>
+
+        <div class="directions">
+          <h3>Наши направления</h3>
+          <ul class="direction-list">
+            <li>Свадьбы</li>
+            <li>Девичники и гендер-пати</li>
+            <li>Тушоо той</li>
+            <li>Корпоративные мероприятия</li>
+            <li>Закладка капсулы времени</li>
+            <li>Передача ключей собственникам</li>
+            <li>Презентации и открытия проектов</li>
+          </ul>
+        </div>
+
+        <div class="photo-collage">
+          <div class="item tall"><img src="https://res.cloudinary.com/dc2n4hmij/image/upload/v1782049935/ESWED-0700.jpg_v3m4na.jpg" alt=""></div>
+          <div class="item"><img src="https://res.cloudinary.com/dc2n4hmij/image/upload/v1782211300/kyoto-16.jpg_cmyhih.jpg" alt=""></div>
+          <div class="item"><img src="https://res.cloudinary.com/dc2n4hmij/image/upload/v1781530879/photo_5296696206966857736_y_jn4f5m.jpg" alt=""></div>
+          <div class="item"><img src="https://res.cloudinary.com/dc2n4hmij/image/upload/v1781183811/%D0%A4%D0%BE%D1%82%D0%BE_4_hpq5df.jpg" alt=""></div>
+          <div class="item"><img src="https://res.cloudinary.com/dc2n4hmij/image/upload/v1781462548/Aidan-050_resized_1_aszyhf.jpg" alt=""></div>
+        </div>
+      </section>
+
+      <section class="slide dark alt" id="slide-3">
+        <div class="slide-no">03</div>
+        <div class="eyebrow">Что входит в нашу работу</div>
+        <h2 class="title">Здесь важна не услуга, а ценность, которую получает клиент</h2>
+
+        <div class="value-grid">
+          <div class="value-card">
+            <div class="value-num">01</div>
+            <div class="value-title">Концепция</div>
+            <div class="value-text">Создаем идею и сценарий события</div>
+          </div>
+          <div class="value-card">
+            <div class="value-num">02</div>
+            <div class="value-title">Организация</div>
+            <div class="value-text">Подбираем площадки, подрядчиков и контролируем бюджет</div>
+          </div>
+          <div class="value-card">
+            <div class="value-num">03</div>
+            <div class="value-title">Координация</div>
+            <div class="value-text">Управляем всеми процессами до и во время мероприятия</div>
+          </div>
+          <div class="value-card">
+            <div class="value-num">04</div>
+            <div class="value-title">Продюсирование</div>
+            <div class="value-text">Отвечаем за результат и впечатление гостей</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dark" id="slide-4">
+        <div class="slide-no">04</div>
+        <div class="eyebrow">Наши события</div>
+        <h2 class="title">Подборка событий в том же визуальном ритме, что и сам сайт</h2>
+
+        <div class="events-gallery">
+          <div class="photo"><img src="https://res.cloudinary.com/dc2n4hmij/image/upload/v1782049936/ESWED-0887.jpg_u8naal.jpg" alt=""></div>
+          <div class="photo"><img src="https://res.cloudinary.com/dc2n4hmij/image/upload/v1781462548/Aidan-050_resized_1_aszyhf.jpg" alt=""></div>
+          <div class="photo"><img src="https://res.cloudinary.com/dc2n4hmij/image/upload/v1782211292/kyoto-213.jpg_hzne5t.jpg" alt=""></div>
+          <div class="photo"><img src="https://res.cloudinary.com/dc2n4hmij/image/upload/v1782212275/%D1%8B%D0%BE%D0%B0%D0%BB%D0%BC%D1%82%D0%BB%D0%BE%D1%83%D1%86%D1%84_aszwn3.jpg" alt=""></div>
+        </div>
+
+        <div class="event-texts">
+          <div class="block">
+            <h4>Свадьбы</h4>
+            <p>Создание уникальных свадебных концепций, отражающих историю пары</p>
+          </div>
+          <div class="block">
+            <h4>Семейные торжества</h4>
+            <p>События, объединяющие поколения и сохраняющие традиции</p>
+          </div>
+          <div class="block">
+            <h4>Корпоративные мероприятия</h4>
+            <p>Сильные события для компаний, брендов и проектов</p>
+          </div>
+          <div class="block">
+            <h4>Девелоперские проекты</h4>
+            <p>Закладка капсулы времени, передачи ключей, открытия объектов</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide light" id="slide-5">
+        <div class="slide-no">05</div>
+        <div class="eyebrow">Как мы работаем</div>
+        <h2 class="title">Четкий процесс и понятный результат на каждом этапе</h2>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01 / Брифинг</div>
+            <h4>Брифинг</h4>
+            <p>Изучаем задачу и цели мероприятия</p>
+          </div>
+          <div class="step">
+            <div class="step-num">02 / Концепция</div>
+            <h4>Концепция</h4>
+            <p>Создаем идею, сценарий и визуальную концепцию</p>
+          </div>
+          <div class="step">
+            <div class="step-num">03 / Подготовка</div>
+            <h4>Подготовка</h4>
+            <p>Формируем команду и контролируем все процессы</p>
+          </div>
+          <div class="step">
+            <div class="step-num">04 / Реализация</div>
+            <h4>Реализация</h4>
+            <p>Проводим мероприятие и берем ответственность за результат</p>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <h3>Цифры</h3>
+          <ul class="stat-list">
+            <li><span class="stat-val">30+</span><span class="stat-desc">реализованных проектов</span></li>
+            <li><span class="stat-val">5</span><span class="stat-desc">лет опыта</span></li>
+            <li><span class="stat-val">1000+</span><span class="stat-desc">гостей на крупнейших мероприятиях</span></li>
+            <li><span class="stat-val">100%</span><span class="stat-desc">соблюдение сроков</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="slide dark alt" id="slide-6">
+        <div class="slide-no">06</div>
+        <div class="pricing-intro">
+          <div class="eyebrow">Стоимость наших услуг</div>
+          <h2 class="title">Ориентировочные бюджеты на организацию мероприятий</h2>
+          <p class="text">Каждый проект уникален, поэтому итоговая стоимость рассчитывается индивидуально после брифинга и зависит от формата мероприятия, количества гостей, площадки и объема задач</p>
+        </div>
+
+        <div class="pricing-cards">
+          <div class="price-card">
+            <h3>Частные мероприятия</h3>
+            <ul class="price-list">
+              <li><span class="price-name">Свадьбы</span><span class="price-value">от 1 500 $</span></li>
+              <li><span class="price-name">Кыз узатуу</span><span class="price-value">от 1 300 $</span></li>
+              <li><span class="price-name">Тушоо той</span><span class="price-value">от 1 200 $</span></li>
+              <li><span class="price-name">Гендер-пати</span><span class="price-value">от 1 000 $</span></li>
+            </ul>
+          </div>
+
+          <div class="price-card">
+            <h3>Корпоративные мероприятия</h3>
+            <ul class="price-list">
+              <li><span class="price-name">Тимбилдинги</span><span class="price-value">от 2 000 $</span></li>
+              <li><span class="price-name">Корпоративные мероприятия</span><span class="price-value">от 1 500 $</span></li>
+              <li><span class="price-name">Закрытые презентации проектов</span><span class="price-value">от 1 800 $</span></li>
+              <li><span class="price-name">Передача ключей собственникам</span><span class="price-value">от 2 000 $</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dark contact-slide" id="slide-7">
+        <div class="slide-no">07</div>
+        <div class="contact-inner">
+          <div class="eyebrow">Контакты</div>
+          <h2 class="contact-title">Давайте создадим событие, о котором будут говорить</h2>
+          <div class="contact-list">
+            <div class="contact-item"><span>Телефон</span><b>+996 227 168 103</b></div>
+            <div class="contact-item"><span>WhatsApp</span><b>+996 227 168 103</b></div>
+            <div class="contact-item"><span>Instagram</span><b>@ivory.event.bureau</b></div>
+          </div>
+          <div class="footer-note">IVORY EVENT BUREAU · BISHKEK</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>
